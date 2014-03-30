@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/XmlTest.iml" filepath="$PROJECT_DIR$/XmlTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XmlTest-agent/XmlTest-agent.iml" filepath="$PROJECT_DIR$/XmlTest-agent/XmlTest-agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XmlTest-common/XmlTest-common.iml" filepath="$PROJECT_DIR$/XmlTest-common/XmlTest-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XmlTest-server/XmlTest-server.iml" filepath="$PROJECT_DIR$/XmlTest-server/XmlTest-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/build/build.iml" filepath="$PROJECT_DIR$/build/build.iml" />
+    </modules>
+  </component>
+</project>
+
