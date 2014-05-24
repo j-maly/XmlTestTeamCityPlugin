@@ -5,6 +5,12 @@
     <formats>
         <format>zip</format>
     </formats>
+	<fileSets>
+		<fileSet> 
+			<directory>../XmlTest-agent/src/runtime</directory>
+			<outputDirectory>/runtime</outputDirectory>
+		</fileSet>
+	</fileSets>
     <files>
         <file>
             <source>../XmlTest-agent/teamcity-plugin.xml</source>
