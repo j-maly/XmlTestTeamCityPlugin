@@ -20,24 +20,30 @@ Build configuration with XmlTest
 
 * Create a project in TeamCity as you would normally do (you can use SampleXSpecProject in this repo to test it)
 * Create a new build step in your configuration. 
+![XmlTest build step](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/build-step.png)
 * Pick XmlTest as runner type 
 * Enter paths to your xspec scenarios. Wildcards are recognized, so you might want to use something like `**/*.xspec`
 * Go to general settings of your build configuration and add the following lines to the `Artifact paths` field: 
-
 ```
 target\xmltest-xspec-results/**/*.xml => xspec.zip
 target\xmltest-xspec-results/**/*.html => xspec.zip
 ```
+![XmlTest artifact settings](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/project-artifacts.png)
 * Go to your **Project settings** (not build configuration settings) and in *Report tabs*, add a new tab titled `XSpec` with Start page `xspec.zip!index.html`
+![XmlTest setting up XSpec report tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/report-tabs.png)
 * You are now ready to run your build! 
 
 TeamCity integration
 --------------------
 
 Once your build is finished, you can see the examine the results in 
+* Overview tab (build results)
+![XmlTest - Overview tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/overview-tab.png)
 * Tests tab (each scenario ~ one line)
   * clicking a failed scenario displays XSLT output when running the test (showing the failed expectation)
+![XmlTest - Tests tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/tests-tab.png)
 * XSpec tab shows reports produced by XSpec formatter (part of the XSpec project)
+![XmlTest - XSpec tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/xspec-tab.png) 
 * Artifacts tab - here you can download the reports in XML or HTM (as produced by the formatter)
 * Build log - displays output of the XSLT processor running the scenarios. 
 
