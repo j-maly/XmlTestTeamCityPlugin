@@ -3,7 +3,7 @@ XmlTest TeamCity plugin
 XSpec scenarios in your TeamCity server
 -------------------------------------------
 
-XmlTest is a Plugin for continuous integration server [TeamCity](http://www.jetbrains.com/teamcity/).
+XmlTest is a plugin for continuous integration server [TeamCity](http://www.jetbrains.com/teamcity/).
 
 It allows you to integrate your **XSpec scenarios** to your continous integration workflow. 
 
