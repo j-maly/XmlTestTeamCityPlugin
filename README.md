@@ -1,4 +1,4 @@
-XmlTest Teamcity plugin
+XmlTest TeamCity plugin
 =======================
 XSpec scenarios in your TeamCity server
 -------------------------------------------
