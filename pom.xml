@@ -10,8 +10,8 @@
   </properties>
   <repositories>
     <repository>
-        <id>JetBrains</id>
-        <url>http://repository.jetbrains.com/</url>
+        <id>j-maly/XmlTestTeamCityPlugin</id>
+        <url>https://github.com/j-maly/XmlTestTeamCityPlugin</url>
     </repository>
   </repositories>
   <build>
