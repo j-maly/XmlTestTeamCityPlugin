@@ -23,7 +23,7 @@ public class OutputParser {
     }
 
     public boolean isFailedLine(String outputLine) {
-        return outputLine.contains("FAILED");
+        return outputLine.contains("FAILED") || outputLine.contains("ERROR");
     }
 
     public boolean isResultsLine(String outputLine) {
