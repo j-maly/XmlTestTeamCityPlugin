@@ -1,9 +1,9 @@
-XmlTest Teamcity plugin
+XmlTest TeamCity plugin
 =======================
 XSpec scenarios in your TeamCity server
 -------------------------------------------
 
-XmlTest is a Plugin for continuous integration server [TeamCity](http://www.jetbrains.com/teamcity/).
+XmlTest is a plugin for continuous integration server [TeamCity](http://www.jetbrains.com/teamcity/).
 
 It allows you to integrate your **XSpec scenarios** to your continous integration workflow. 
 
@@ -37,15 +37,15 @@ TeamCity integration
 --------------------
 
 Once your build is finished, you can see the examine the results in 
-* Overview tab (build results)
+* **Overview tab (build results)**
 ![XmlTest - Overview tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/overview-tab.png)
-* Tests tab (each scenario ~ one line)
+* **Tests tab (each scenario ~ one line)**
   * clicking a failed scenario displays XSLT output when running the test (showing the failed expectation)
 ![XmlTest - Tests tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/tests-tab.png)
-* XSpec tab shows reports produced by XSpec formatter (part of the XSpec project)
+* **XSpec tab** shows reports produced by XSpec formatter (part of the XSpec project)
 ![XmlTest - XSpec tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/xspec-tab.png) 
-* Artifacts tab - here you can download the reports in XML or HTM (as produced by the formatter)
-* Build log - displays output of the XSLT processor running the scenarios. 
+* **Artifacts tab** - here you can download the reports in XML or HTM (as produced by the formatter)
+* **Build log** - displays output of the XSLT processor running the scenarios. 
 
 Implementation
 --------------
