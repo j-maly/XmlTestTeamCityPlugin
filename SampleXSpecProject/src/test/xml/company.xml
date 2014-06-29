@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+    <name>BigComp</name>
+    <departments>
+        <department>
+            <name>Production</name>
+            <employees>
+                <employee>
+                    <firstName>John</firstName>
+                    <lastName>Smith</lastName>
+                    <id>4533</id>
+                    <salary>2000</salary>
+                    <hired>2012-05-05</hired>
+                </employee>
+                <employee> <!-- manager -->
+                    <firstName>Peter</firstName>
+                    <lastName>Brown</lastName>
+                    <id>1325</id>
+                    <salary>7000</salary>
+                    <hired>2011-01-02</hired>
+                </employee>
+            </employees>
+            <manager>
+                <firstName>Peter</firstName>
+                <lastName>Brown</lastName>
+                <id>1325</id>
+                <salary>7000</salary>
+                <hired>2011-01-02</hired>
+                <phone>777123456</phone>
+            </manager>            
+            <subdepartments>
+                <department>
+                    <name>Development</name>
+                    <employees>
+                        <employee><!-- manager --> 
+                            <firstName>Arthur</firstName>
+                            <lastName>Taylor</lastName>
+                            <id>6547</id>
+                            <salary>5000</salary>
+                            <hired>2010-07-08</hired>
+                        </employee>
+                        <employee>
+                            <firstName>Martin</firstName>
+                            <lastName>Owen</lastName>
+                            <id>54789</id>
+                            <salary>3500</salary>
+                            <hired>2012-03-06</hired>
+                        </employee>
+                    </employees>
+                    <manager>
+                        <firstName>Arthur</firstName>
+                        <lastName>Taylor</lastName>
+                        <id>6547</id>
+                        <salary>5000</salary>
+                        <hired>2010-07-08</hired>
+                        <phone>777123456</phone>
+                    </manager>          
+                    <subdepartments/>
+                    <interns />
+                </department>
+                <department>
+                    <name>Engineering</name>
+                    <employees><!-- manager -->      
+                        <employee>                
+                            <firstName>Peter</firstName>
+                            <lastName>Berg</lastName>
+                            <id>9635</id>
+                            <salary>5500</salary>
+                            <hired>2011-07-02</hired>
+                        </employee>
+                        <employee>                
+                            <firstName>Peter</firstName>
+                            <lastName>Berg</lastName>
+                            <id>9635252</id>
+                            <salary>5500</salary>
+                            <hired>2011-07-02</hired>
+                        </employee>
+                        <employee>                
+                            <firstName>Peter</firstName>
+                            <lastName>Berg</lastName>
+                            <id>963598</id>
+                            <salary>5500</salary>
+                            <hired>2011-07-02</hired>
+                        </employee>
+                    </employees>
+                    <manager>
+                        <firstName>Peter</firstName>
+                        <lastName>Berg</lastName>
+                        <id>9635</id>
+                        <salary>5500</salary>
+                        <hired>2011-07-02</hired>
+                        <phone>777123456</phone>
+                    </manager>         
+                    <subdepartments/>
+                    <interns>
+                        <intern>
+                            <id>54789</id> <!-- Martin Owen --> 
+                        </intern>
+                    </interns>
+                </department>                
+            </subdepartments>
+            <interns />
+        </department>
+        <department>
+            <name>Accounting</name>
+            <employees>
+                <employee><!-- manager --> 
+                    <firstName>Lucy</firstName>
+                    <lastName>Sheen</lastName>
+                    <id>9856</id>
+                    <salary>2100</salary>
+                    <hired>2006-03-08</hired>
+                </employee>
+            </employees>
+            <manager>
+                <firstName>Lucy</firstName>
+                <lastName>Sheen</lastName>
+                <id>9856</id>
+                <salary>2100</salary>
+                <hired>2006-03-08</hired>
+                <phone>777123456</phone>
+            </manager>
+            <subdepartments />
+            <interns />
+        </department>
+    </departments>
+</company> 
