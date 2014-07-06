@@ -28,8 +28,12 @@ declare function comp:getManagers($company as element()) as element(department)*
     for $d in $company/departments/descendant-or-self::department
     return 
         <department>
-            {$d/name}            
-            {$d/manager}            
+            {$d/name}
+            <manager>
+                {$d/manager/firstName}
+                {$d/manager/lastName}
+                {$d/manager/id}
+            </manager>            
         </department>
 };
 

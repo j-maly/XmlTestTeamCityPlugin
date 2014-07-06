@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
  */
 public class OutputParser {
     static Pattern testResultsPattern = Pattern.compile(".*passed:(\\d+) /pending:(\\d+) /failed:(\\d+) /total:(\\d+).*");
-    static Pattern scenarioStartedPattern = Pattern.compile(".*Running scenario: (.*)");
-    static Pattern scenarioDonePattern = Pattern.compile(".*Done scenario: (.*)");
-    static Pattern cleanupPattern = Pattern.compile(".*INFO: file:///.*xspec-xslt.xpl:(\\d*):(\\d*):(.*)");
+    static Pattern scenarioStartedPattern = Pattern.compile(".*Running scenario: (?:xs:string: )?(.*)");
+    static Pattern scenarioDonePattern = Pattern.compile(".*Done scenario: (?:xs:string: )?(.*)");
+    static Pattern cleanupPattern = Pattern.compile(".*INFO: file:///.*xspec-(?:xslt|xquery).xpl:(\\d*):(\\d*):(.*)");
 
     public boolean isStartLine(String outputLine) {
         return isMatch(outputLine, scenarioStartedPattern);
@@ -61,10 +61,16 @@ public class OutputParser {
     }
 
     public void printCleanedLine(String outputLine, BuildProgressLogger logger) {
-        Matcher matcher = cleanupPattern.matcher(outputLine);
-        if (matcher.matches()){
-            if (matcher.group(3).length() > 0)
-                logger.message(String.format("xspec-xslt.xpl:%s:%s:%s", matcher.group(1), matcher.group(2), matcher.group(3)));
+        Matcher xprocLineMatcher = cleanupPattern.matcher(outputLine);
+        Matcher doneLineMatcher = scenarioDonePattern.matcher(outputLine);
+        Matcher startedLineMatcher = scenarioStartedPattern.matcher(outputLine);
+        if (xprocLineMatcher.matches()){
+            if (xprocLineMatcher.group(3).length() > 0)
+                logger.message(String.format("xspec-xslt.xpl:%s:%s:%s", xprocLineMatcher.group(1), xprocLineMatcher.group(2), xprocLineMatcher.group(3)));
+        } else if (doneLineMatcher.matches()) {
+            logger.message(String.format("Done scenario: %s", doneLineMatcher.group(1)));
+        } else if (startedLineMatcher.matches()) {
+            logger.message(String.format("Running scenario: %s", startedLineMatcher.group(1)));
         } else {
             logger.message(outputLine);
         }

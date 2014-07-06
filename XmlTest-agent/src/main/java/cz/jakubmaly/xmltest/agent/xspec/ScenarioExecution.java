@@ -2,6 +2,7 @@ package cz.jakubmaly.xmltest.agent.xspec;
 
 import cz.jakubmaly.xmltest.common.ArtifactsUtil;
 import cz.jakubmaly.xmltest.common.files.PathUtils;
+import jetbrains.buildServer.BuildProblemData;
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.BuildFinishedStatus;
@@ -32,6 +33,7 @@ public class ScenarioExecution implements CommandExecution {
     private ScenarioResultInfo scenarioResultInfo;
     private String currentScenario;
     private OutputParser outputParser = new OutputParser();
+    private HarnessAsigner harnessAsigner = new HarnessAsigner();
     private BuildProgressLogger logger;
 
     public ScenarioExecution(ScenariosSession scenariosSession, String xspecInput) {
@@ -66,7 +68,10 @@ public class ScenarioExecution implements CommandExecution {
                         FilenameUtils.removeExtension(xspecInput) + "." + "xml");
                 String relativeIndexHtml = PathUtils.getRelativePath(scenariosSession.getIndexHtmlPath(),
                         htmlOutput, File.separator);
+
+                HarnessAsigner.Harness harness;
                 try {
+                    harness = harnessAsigner.decideHarness(PathUtils.joinToPath(getAgentRunningBuild().getCheckoutDirectory().getAbsolutePath(), xspecInput));
                     FileUtils.forceMkdir(new File(new File(htmlOutput).getParent()));
                 } catch (IOException e) {
                     throw new RunBuildException(e);
@@ -75,18 +80,24 @@ public class ScenarioExecution implements CommandExecution {
                 args.add("-classpath");
                 args.add(PathUtils.joinToPath(getScenariosSession().getXmlPluginDirectory(), "lib", "*"));
                 args.add("com.xmlcalabash.drivers.Main");
-                args.add("-isource=" + xspecInput);
-                args.add("-oresult=" + htmlOutput);
+                args.add("-isource=" + xspecInput.replace("\\","/"));
+                args.add("-oresult=" + htmlOutput.replace("\\","/"));
                 args.add("xmlResult=" + new File(xmlOutput).toURI());
                 args.add("pathToIndexHtml=" + relativeIndexHtml.replace('\\', '/'));
-                String pipeline  = PathUtils.joinToPath(getScenariosSession().getXmlPluginDirectory(), "runtime", "xproc", "xspec-xslt.xpl");
+                String pipeline;
+                if (harness == HarnessAsigner.Harness.XSLT) {
+                    pipeline = PathUtils.joinToPath(getScenariosSession().getXmlPluginDirectory(), "runtime", "xproc", "xspec-xslt.xpl");
+                } else {
+                    pipeline = PathUtils.joinToPath(getScenariosSession().getXmlPluginDirectory(), "runtime", "xproc", "xspec-xquery.xpl");
+                    // TODO relative path
+                    args.add("-p");
+                    args.add("xspec-home=file:/d:/GitHub/XmlTestTeamcityPlugin/XmlTest-agent/src/runtime/xproc/");
+                }
                 args.add(pipeline);
                 return args;
             }
         };
     }
-
-
 
     public void beforeProcessStarted() throws RunBuildException { }
 
@@ -101,11 +112,11 @@ public class ScenarioExecution implements CommandExecution {
         return true;
     }
 
-    public void onStandardOutput(String outputLine) {
+    public void onStandardOutput(@NotNull String outputLine) {
         getLogger().message(outputLine);
     }
 
-    public void onErrorOutput(String outputLine) {
+    public void onErrorOutput(@NotNull String outputLine) {
         if (!outputLine.trim().endsWith("com.xmlcalabash.util.DefaultXProcMessageListener info")) {
             outputParser.printCleanedLine(outputLine, getLogger());
             if (outputParser.isStartLine(outputLine)) {
@@ -125,11 +136,10 @@ public class ScenarioExecution implements CommandExecution {
         }
     }
 
-    public void processStarted(String commandLine, File checkoutDirectory) {
+    public void processStarted(@NotNull String commandLine, @NotNull File checkoutDirectory) {
         getLogger().logSuiteStarted(xspecInput);
         scenarioResultInfo = new ScenarioResultInfo();
         String relativeHtml = PathUtils.getRelativePath(htmlOutput, scenariosSession.getReportsOutputDirectory(), File.separator);
-        getLogger().message("relativeHtml: " + relativeHtml);
         String relativeXml = PathUtils.getRelativePath(xmlOutput, scenariosSession.getReportsOutputDirectory(), File.separator);
         scenarioResultInfo.setOutputHtmlFile(relativeHtml);
         scenarioResultInfo.setOutputXmlFile(relativeXml);
@@ -139,6 +149,7 @@ public class ScenarioExecution implements CommandExecution {
     public void processFinished(int processReturnCode) {
         if (processReturnCode != 0) {
             getLogger().logTestFailed(xspecInput, "Error occurred in XSpec pipeline, examine calabash output.", null);
+            getLogger().logBuildProblem(BuildProblemData.createBuildProblem("ERR_" + xspecInput, "XPROC_ERROR", "XProc error occurred when running: " + xspecInput));
             getScenariosSession().setStatus(BuildFinishedStatus.FINISHED_FAILED);
         } else {
             getScenariosSession().getArtifactsWatcher().addNewArtifactsPath(

@@ -77,7 +77,6 @@ public class ScenariosSession implements MultiCommandBuildSession {
     @NotNull
     public BuildFinishedStatus sessionFinished() {
         getLogger().activityFinished("xmltest session", DefaultMessagesInfo.BLOCK_TYPE_TEST_SUITE);
-        getLogger().message("Session result: " + getStatus());
         createSummaryReports();
         return getStatus() != null ? getStatus() : BuildFinishedStatus.FINISHED_SUCCESS;
     }

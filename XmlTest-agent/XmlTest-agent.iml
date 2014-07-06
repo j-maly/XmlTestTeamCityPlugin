@@ -59,8 +59,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-tx:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: xpp3:xpp3:1.1.4c" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.teamcity.idea:util:95.677" level="project" />
-    <orderEntry type="library" name="Maven: com.xmlcalabash:xmlcalabash:1.0.13-94" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.saxon:Saxon-HE:9.4.0.7" level="project" />
+    <orderEntry type="library" name="Maven: org.daisy.libs:com.xmlcalabash:1.0.18" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.saxon:Saxon-HE:9.5.1-5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />

@@ -22,7 +22,7 @@
     <pkg:import-uri>http://www.jenitennison.com/xslt/xspec/format-xspec-report.xsl</pkg:import-uri>
 
     <xsl:param name="report-css-uri" select="'/plugins/XmlTest/test-report.css'"/>
-    <xsl:param name="pathToIndexHtml" select="'index.html'"/>
+    <xsl:param name="pathToIndexHtml" select="'DEF/index.html'"/>
 
     <xsl:function name="x:pending-callback" as="node()*">
         <!-- returns formatted output for $pending. -->

@@ -153,6 +153,9 @@ declare function test:report-value($value as item()*, $wrapper-name as xs:string
   test:report-value($value, $wrapper-name, 'http://www.jenitennison.com/xslt/xspec')
 };
 
+            
+            
+
 declare function test:report-value(
     $value as item()*,
     $wrapper-name as xs:string,
@@ -231,6 +234,19 @@ declare function test:atom-type($value as xs:anyAtomicType) as xs:string
     'xs:time'
   else
     'xs:anyAtomicType'
+};
+
+declare function test:trace-failures($successful as xs:boolean) as xs:boolean
+{
+  if ($successful) then 
+    $successful
+  else 
+    trace($successful, '      FAILED, expectation result')
+};
+
+declare function test:trace-and-pass($result as item()*, $message as xs:string) as item()*
+{
+  trace($result,$message)
 };
 
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:functx="http://www.functx.com"
+               xmlns:comp="http://company.org"
+               query="http://company.org"
+               query-at="../../main/xquery/aggregations.xqm">
+   <x:scenario label="Test aggregations">      
+      <x:scenario label="Test average">         
+         <x:call function="comp:getAvgSalary">
+            <x:param href="../xml/company.xml" select="/company"/>
+         </x:call>
+         <x:expect label="Should return average salaries">
+            <department>
+               <name>Production</name>
+               <avg-salary>4500</avg-salary>
+            </department>
+            <department>
+               <name>Development</name>
+               <avg-salary>4250</avg-salary>
+            </department>
+            <department>
+               <name>Engineering</name>
+               <avg-salary>5500</avg-salary>
+            </department>
+            <department>
+               <name>Accounting</name>
+               <avg-salary>2100</avg-salary>
+            </department>
+         </x:expect>
+      </x:scenario>
+      <x:scenario label="Test employees">      
+         <x:scenario label="count">
+            <x:call function="comp:getEmployeeCount">
+               <x:param href="../xml/company.xml" select="/company"/>
+            </x:call>
+            <x:expect label="Should return count of employees in department">
+               <department>
+                  <name>Production</name>
+                  <employee-count>2</employee-count>
+               </department>
+               <department>
+                  <name>Development</name>
+                  <employee-count>2</employee-count>
+               </department>               
+            </x:expect>
+         </x:scenario>
+         <x:scenario label="managers">
+            <x:call function="comp:getManagers">
+               <x:param href="../xml/company.xml" select="/company"/>
+            </x:call>
+            <x:expect label="Should return managers for departments">
+               <department>
+                  <name>Production</name>
+                  <manager> <!-- purposefully wrong, should be discovered by tests --> 
+                     <firstName>Peter</firstName>
+                     <lastName>Berg</lastName>
+                     <id>9635</id>
+                  </manager>
+               </department>
+               <department>
+                  <name>Development</name>
+                  <manager>
+                     <firstName>Arthur</firstName>
+                     <lastName>Taylor</lastName>
+                     <id>6547</id>
+                  </manager>
+               </department>
+               <department>
+                  <name>Engineering</name>
+                  <manager>
+                     <firstName>Peter</firstName>
+                     <lastName>Berg</lastName>
+                     <id>9635</id>
+                  </manager>
+               </department>
+               <department>
+                  <name>Accounting</name>
+                  <manager>
+                     <firstName>Lucy</firstName>
+                     <lastName>Sheen</lastName>
+                     <id>9856</id>
+                  </manager>
+               </department>
+            </x:expect>
+         </x:scenario>
+      </x:scenario>        
+   </x:scenario>
+</x:description>
