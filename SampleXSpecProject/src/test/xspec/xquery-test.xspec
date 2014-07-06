@@ -49,8 +49,38 @@
                <x:param href="../xml/company.xml" select="/company"/>
             </x:call>
             <x:expect label="Should return managers for departments">
-               <department>
-               </department>
+                <department>
+                    <name>Production</name>
+                    <manager><!-- purposefully wrong, should be discovered by tests --> 
+                        <firstName>Peter</firstName>
+                        <lastName>Berg</lastName>
+                        <id>9635</id>
+                    </manager>
+                </department>
+                <department>
+                    <name>Development</name>
+                    <manager>
+                        <firstName>Arthur</firstName>
+                        <lastName>Taylor</lastName>
+                        <id>6547</id>
+                    </manager>
+                </department>
+                <department>
+                    <name>Engineering</name>
+                    <manager>
+                        <firstName>Peter</firstName>
+                        <lastName>Berg</lastName>
+                        <id>9635</id>
+                    </manager>
+                </department>
+                <department>
+                    <name>Accounting</name>
+                    <manager>
+                        <firstName>Lucy</firstName>
+                        <lastName>Sheen</lastName>
+                        <id>9856</id>
+                    </manager>
+                </department>
             </x:expect>
          </x:scenario>
       </x:scenario>        
