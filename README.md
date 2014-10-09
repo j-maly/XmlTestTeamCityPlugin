@@ -10,7 +10,7 @@ It allows you to integrate your **XSpec scenarios** to your continous integratio
 Installation
 ------------
 
-* Drop `/target/XmlTest.zip` to your TeamCity server plugins folder (under your TeamCity Data folder), e.g. `C:\TeamCityData\plugins\XmlTest.zip`
+* Unpack `/target/XmlTest.zip` to your TeamCity server plugins folder (under your TeamCity Data folder), e.g. `C:\TeamCityData\plugins\XmlTest` should contain subfolders `agent`, `server` and one file `teamcity-plugin.xml`.
 * Restart TeamCity server and all build agents
 
 Build configuration with XmlTest
@@ -36,7 +36,7 @@ target\xmltest-xspec-results/**/*.html => xspec.zip
 TeamCity integration
 --------------------
 
-Once your build is finished, you can see the examine the results in 
+Once your build is finished, you can examine the results in 
 * **Overview tab (build results)**
 ![XmlTest - Overview tab](https://raw.githubusercontent.com/j-maly/XmlTestTeamCityPlugin/master/docs/screenshots/overview-tab.png)
 * **Tests tab (each scenario ~ one line)**
